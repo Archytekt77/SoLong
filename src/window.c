@@ -6,11 +6,12 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/11 01:33:17 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/12 01:08:44 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx-linux/mlx.h"
+#include "../includes/Libft/libft.h"
+#include "../includes/minilibx-linux/mlx.h"
 #include "so_long.h"
 
 bool	init_window(t_game *game)
@@ -44,5 +45,7 @@ int	close_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	free_map(game->map);
+	ft_printf("Game closed.\n");
 	exit(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:58 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/11 01:44:08 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/12 01:21:06 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_game
 	void	*img_player;
 	void	*img_collectible;
 	void	*img_exit;
+	int		moves;
 }			t_game;
 
 // Prototypes
@@ -54,5 +55,7 @@ bool		init_window(t_game *game);
 bool		is_map_width_valid(t_map *map);
 void		render_map(t_game *game);
 bool		load_textures(t_game *game);
+int			handle_keypress(int keycode, t_game *game);
+bool		check_map_accessibility(t_map *map);
 
 #endif
