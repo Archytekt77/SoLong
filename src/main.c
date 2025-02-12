@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:03:37 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/12 01:21:43 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/12 19:07:43 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ int	main(int argc, char **argv)
 		printf("Error\nFailed to parse map\n");
 		return (1);
 	}
-	if (!check_map_validity(map) || !check_map_accessibility(map))
+	if (!check_map_validity(map))
+	{
+		free_map(map);
+		return (1);
+	}
+	if (!check_map_accessibility(map))
 	{
 		free_map(map);
 		return (1);

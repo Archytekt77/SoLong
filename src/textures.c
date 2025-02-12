@@ -3,52 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:49 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/11 01:32:50 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/12 19:18:33 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx-linux/mlx.h"
+#include "../minilibx-linux/mlx.h"
+#include "../includes/Libft/libft.h"
 #include "so_long.h"
 
-void	free_textures(t_game *game)
-{
-	if (game->img_wall)
-		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->img_floor)
-		mlx_destroy_image(game->mlx, game->img_floor);
-	if (game->img_player)
-		mlx_destroy_image(game->mlx, game->img_player);
-	if (game->img_collectible)
-		mlx_destroy_image(game->mlx, game->img_collectible);
-	if (game->img_exit)
-		mlx_destroy_image(game->mlx, game->img_exit);
-}
-
-// Charger les textures
 bool	load_textures(t_game *game)
 {
-	int	img_width;
-	int	img_height;
+	int	i;
+	int	width;
+	int	height;
 
-	game->img_wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm",
-			&img_width, &img_height);
-	game->img_floor = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm",
-			&img_width, &img_height);
-	game->img_player = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm",
-			&img_width, &img_height);
-	game->img_collectible = mlx_xpm_file_to_image(game->mlx,
-			"textures/collectible.xpm", &img_width, &img_height);
-	game->img_exit = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm",
-			&img_width, &img_height);
-	if (!game->img_wall || !game->img_floor || !game->img_player
-		|| !game->img_collectible || !game->img_exit)
+	i = 0;
+	game->textures[WALL_TEXTURE] = mlx_xpm_file_to_image(game->mlx,
+			"textures/wall.xpm", &width, &height);
+	game->textures[FLOOR_TEXTURE] = mlx_xpm_file_to_image(game->mlx,
+			"textures/floor.xpm", &width, &height);
+	game->textures[PLAYER_TEXTURE] = mlx_xpm_file_to_image(game->mlx,
+			"textures/player.xpm", &width, &height);
+	game->textures[COLLECTIBLE_TEXTURE] = mlx_xpm_file_to_image(game->mlx,
+			"textures/collectible.xpm", &width, &height);
+	game->textures[EXIT_TEXTURE] = mlx_xpm_file_to_image(game->mlx,
+			"textures/exit.xpm", &width, &height);
+	while (i < 5)
 	{
-		printf("Error\nFailed to load textures\n");
-		free_textures(game);
-		return (false);
+		if (!game->textures[i])
+		{
+			ft_printf("Error\nFailed to load texture %d\n", i);
+			free_textures(game);
+			return (false);
+		}
+		i++;
 	}
 	return (true);
 }

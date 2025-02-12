@@ -6,12 +6,12 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:58 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/11 16:21:29 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/12 19:07:22 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "../includes/Libft/libft.h"
+#include "so_long.h"
 
 // Vérifie si toutes les lignes de la carte ont la même largeur
 bool	is_map_width_valid(t_map *map)

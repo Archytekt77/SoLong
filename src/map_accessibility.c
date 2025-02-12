@@ -1,5 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_accessibility.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/12 19:07:39 by lmaria            #+#    #+#             */
+/*   Updated: 2025/02/12 19:07:40 by lmaria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/Libft/libft.h"
 #include "so_long.h"
+
+void	free_map_copy(char **map_copy, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(map_copy[i]);
+		i++;
+	}
+	free(map_copy);
+}
 
 void	flood_fill(char **map, int x, int y)
 {
@@ -26,9 +51,7 @@ char	**copy_map(t_map *map)
 		map_copy[i] = ft_strdup(map->map[i]);
 		if (!map_copy[i])
 		{
-			while (--i >= 0)
-				free(map_copy[i]);
-			free(map_copy);
+			// free_map_copy(map_copy, i);
 			return (NULL);
 		}
 		i++;
@@ -50,10 +73,10 @@ bool	is_map_solvable(char **map_copy, int height)
                 or exit.\n");
 			return (false);
 		}
-		free(map_copy[i]);
+		// free(map_copy[i]);
 		i++;
 	}
-	free(map_copy);
+	// free(map_copy);
 	return (true);
 }
 
@@ -67,8 +90,10 @@ bool	check_map_accessibility(t_map *map)
 	flood_fill(map_copy, map->player_x, map->player_y);
 	if (!is_map_solvable(map_copy, map->height))
 	{
+		free_map_copy(map_copy, map->height);
 		free_map(map);
 		exit(1);
 	}
+	free_map_copy(map_copy, map->height);
 	return (true);
 }

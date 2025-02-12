@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:58 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/12 01:21:06 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/12 19:19:29 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collectible;
-	void	*img_exit;
+	void	*textures[5];
 	int		moves;
 }			t_game;
+
+# define WALL_TEXTURE 0
+# define FLOOR_TEXTURE 1
+# define PLAYER_TEXTURE 2
+# define COLLECTIBLE_TEXTURE 3
+# define EXIT_TEXTURE 4
 
 // Prototypes
 t_map		*parse_map(char *filename);
@@ -57,5 +59,6 @@ void		render_map(t_game *game);
 bool		load_textures(t_game *game);
 int			handle_keypress(int keycode, t_game *game);
 bool		check_map_accessibility(t_map *map);
+void		free_textures(t_game *game);
 
 #endif

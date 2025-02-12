@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+         #
+#    By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:20:43 by lmaria            #+#    #+#              #
-#    Updated: 2025/02/12 01:20:48 by archytekt        ###   ########.fr        #
+#    Updated: 2025/02/12 13:42:49 by lmaria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 
 # Compilateur et flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -no-pie
 
 # Dossiers
 SRC_DIR = src
