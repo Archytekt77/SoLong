@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:49 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/12 19:18:33 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/13 04:40:40 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
 #include "../includes/Libft/libft.h"
-#include "so_long.h"
+#include "../minilibx-linux/mlx.h"
+#include "error_handling.h"
 
 bool	load_textures(t_game *game)
 {
@@ -34,11 +34,7 @@ bool	load_textures(t_game *game)
 	while (i < 5)
 	{
 		if (!game->textures[i])
-		{
-			ft_printf("Error\nFailed to load texture %d\n", i);
-			free_textures(game);
-			return (false);
-		}
+			exit_with_game_error(game, "Failed to load texture", 0);
 		i++;
 	}
 	return (true);

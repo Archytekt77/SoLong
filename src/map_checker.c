@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/12 19:07:32 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/13 04:54:43 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
+#include "error_handling.h"
 #include "so_long.h"
 
 // Vérifie si une ligne est bien fermée par des murs
@@ -39,7 +40,9 @@ bool	is_map_closed(t_map *map)
 	return (true);
 }
 
-// Vérifie et compte les éléments de la carte
+/**
+ * Vérifie et compte les éléments de la carte.
+ */
 bool	process_map_element(t_map *map, char c, int i, int j)
 {
 	if (c == 'P')
@@ -53,11 +56,7 @@ bool	process_map_element(t_map *map, char c, int i, int j)
 	else if (c == 'C')
 		map->collectibles++;
 	else if (c != '1' && c != '0')
-	{
-		ft_printf("Error\nInvalid character detected: '%c' at (%d, %d)\n", c, i,
-			j);
 		return (false);
-	}
 	return (true);
 }
 
@@ -88,14 +87,8 @@ bool	check_elements(t_map *map)
 bool	check_map_validity(t_map *map)
 {
 	if (!is_map_closed(map))
-	{
-		printf("Error\nThe map is not closed by walls.\n");
-		return (false);
-	}
+		exit_with_map_error(map, "The map is not closed by walls.", 0);
 	if (!check_elements(map))
-	{
-		printf("Error\nInvalid elements in the map.\n");
-		return (false);
-	}
+		exit_with_map_error(map, "Invalid elements in the map.", 0);
 	return (true);
 }

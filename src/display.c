@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/12 19:10:24 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/13 02:50:40 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,28 @@ void	*get_tile_image(t_game *game, char c)
 }
 
 /**
- * Affiche uniquement le sol sur toute la carte.
+ * Affiche une tuile spécifique (sol, objets, joueur).
  */
-void	render_floor(t_game *game)
+void	render_tile(t_game *game, int x, int y)
+{
+	char	c;
+	void	*img;
+
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x * 128, y
+		* 128);
+	c = game->map->map[y][x];
+	img = get_tile_image(game, c);
+	if (img)
+		mlx_put_image_to_window(game->mlx, game->win, img, x * 128, y * 128);
+	if (game->map->player_x == x && game->map->player_y == y)
+		mlx_put_image_to_window(game->mlx, game->win, game->textures[2], x
+			* 128, y * 128);
+}
+
+/**
+ * Affiche toute la carte en une seule passe.
+ */
+void	render_map(t_game *game)
 {
 	int	x;
 	int	y;
@@ -41,56 +60,9 @@ void	render_floor(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x
-				* 128, y * 128);
+			render_tile(game, x, y);
 			x++;
 		}
 		y++;
 	}
-}
-
-/**
- * Affiche les éléments statiques de la carte (murs, collectibles, sortie).
- */
-void	render_objects(t_game *game)
-{
-	int		x;
-	int		y;
-	char	c;
-	void	*img;
-
-	y = 0;
-	while (y < game->map->height)
-	{
-		x = 0;
-		while (x < game->map->width)
-		{
-			c = game->map->map[y][x];
-			img = get_tile_image(game, c);
-			if (img)
-				mlx_put_image_to_window(game->mlx, game->win, img, x * 128, y
-					* 128);
-			x++;
-		}
-		y++;
-	}
-}
-
-/**
- * Affiche le joueur par-dessus tout.
- */
-void	render_player(t_game *game)
-{
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[2],
-		game->map->player_x * 128, game->map->player_y * 128);
-}
-
-/**
- * Fonction principale d'affichage : affiche tout dans le bon ordre.
- */
-void	render_map(t_game *game)
-{
-	render_floor(game);
-	render_objects(game);
-	render_player(game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/12 19:07:24 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/13 03:31:47 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ bool	can_move_to(t_game *game, int x, int y)
 	return (true);
 }
 
+/**
+ * Déplace le joueur s'il peut se déplacer sur la nouvelle case.
+ */
 void	move_player(t_game *game, int dx, int dy)
 {
 	int	new_x;
@@ -60,6 +63,9 @@ void	move_player(t_game *game, int dx, int dy)
 		update_position(game, new_x, new_y);
 }
 
+/**
+ * Gère les entrées clavier du joueur.
+ */
 int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == 65307)

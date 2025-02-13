@@ -3,30 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/12 19:07:27 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/13 04:42:56 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
+#include "error_handling.h"
 #include "so_long.h"
 #include <fcntl.h>
 
 // Compte le nombre de lignes dans le fichier
 int	count_lines(char *filename)
 {
+	char	*line;
 	int		fd;
 	int		lines;
-	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("Error opening file");
-		return (-1);
-	}
+		exit_with_map_error(NULL, "Failed to open file", 1);
 	lines = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -49,6 +47,7 @@ bool	read_map_line(int fd, t_map *map, int i)
 	{
 		free_map(map);
 		close(fd);
+		free(line);
 		return (false);
 	}
 	if (line[ft_strlen(line) - 1] == '\n')
@@ -65,15 +64,12 @@ bool	fill_map(t_map *map, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("Error opening file");
-		return (false);
-	}
+		exit_with_map_error(map, "Failed to open file", 1);
 	i = 0;
 	while (i < map->height)
 	{
 		if (!read_map_line(fd, map, i))
-			return (false);
+			exit_with_map_error(map, "Error reading map file", 0);
 		i++;
 	}
 	map->map[i] = NULL;
@@ -86,16 +82,10 @@ bool	init_map_structure(t_map *map, char *filename)
 {
 	map->height = count_lines(filename);
 	if (map->height <= 0)
-	{
-		free(map);
-		return (false);
-	}
+		exit_with_map_error(map, "Invalid map file", 0);
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
-	{
-		free(map);
-		return (false);
-	}
+		exit_with_map_error(map, "Failed to allocate memory for map", 0);
 	return (true);
 }
 
@@ -106,17 +96,14 @@ t_map	*parse_map(char *filename)
 
 	map = malloc(sizeof(t_map));
 	if (!map)
-		return (NULL);
+		exit_with_map_error(NULL, "Memory allocation failed", 0);
 	if (!init_map_structure(map, filename))
-		return (NULL);
+		exit_with_map_error(map, "Failed to initialize map structure", 0);
 	if (!fill_map(map, filename))
-		return (NULL);
+		exit_with_map_error(map, "Failed to read map file", 0);
 	map->width = ft_strlen(map->map[0]);
 	if (!is_map_width_valid(map))
-	{
-		free_map(map);
-		return (NULL);
-	}
+		exit_with_map_error(map, "Invalid map width", 0);
 	map->players = 0;
 	map->exits = 0;
 	map->collectibles = 0;
