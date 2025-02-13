@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/13 04:41:04 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/13 17:28:32 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ bool	init_window(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit_with_game_error(game, "Failed to initialize MiniLibX", 0);
-	game->win = mlx_new_window(game->mlx, game->map->width * 128,
-			game->map->height * 128, "So Long");
+	game->win = mlx_new_window(game->mlx, game->map->width * 64,
+			game->map->height * 64, "So Long");
 	if (!game->win)
 		exit_with_game_error(game, "Failed to create window", 0);
 	if (!load_textures(game))

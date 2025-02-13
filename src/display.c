@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 02:50:40 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/13 17:28:19 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	render_tile(t_game *game, int x, int y)
 	char	c;
 	void	*img;
 
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x * 128, y
-		* 128);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x * 64, y
+		* 64);
 	c = game->map->map[y][x];
 	img = get_tile_image(game, c);
 	if (img)
-		mlx_put_image_to_window(game->mlx, game->win, img, x * 128, y * 128);
+		mlx_put_image_to_window(game->mlx, game->win, img, x * 64, y * 64);
 	if (game->map->player_x == x && game->map->player_y == y)
 		mlx_put_image_to_window(game->mlx, game->win, game->textures[2], x
-			* 128, y * 128);
+			* 64, y * 64);
 }
 
 /**

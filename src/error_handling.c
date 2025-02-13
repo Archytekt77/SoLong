@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
+/*   Updated: 2025/02/13 19:52:34 by lmaria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/Libft/libft.h"
 #include "../includes/minilibx-linux/mlx.h"
 #include "so_long.h"
@@ -84,10 +96,7 @@ void	exit_with_map_error(t_map *map, char *msg, int use_errno)
 	else
 		ft_printf("Error: %s\n", msg);
 	if (map)
-	{
-		ft_printf("Freeing map...\n");
 		free_map(map);
-	}
 	else
 		ft_printf("Warning: `map` is NULL, nothing to free.\n");
 	exit(EXIT_FAILURE);

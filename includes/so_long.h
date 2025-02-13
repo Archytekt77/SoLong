@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:58 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 04:41:26 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/13 19:54:37 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 
 typedef struct s_map
 {
-	char **map;       // Tableau 2D stockant la carte
-	int width;        // Largeur de la carte
-	int height;       // Hauteur de la carte
-	int player_x;     // Position X du joueur
-	int player_y;     // Position Y du joueur
-	int collectibles; // Nombre de collectibles (C)
-	int exits;        // Nombre de sorties (E)
-	int players;      // Nombre de joueurs (P)
+	char	**map;
+	int		width;
+	int		height;
+	int		player_x;
+	int		player_y;
+	int		collectibles;
+	int		exits;
+	int		players;
 }			t_map;
 
 typedef struct s_game
