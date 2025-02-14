@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/14 02:24:28 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/14 16:47:04 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ bool	init_map_structure(t_map *map, char *filename)
 {
 	map->height = count_lines(filename);
 	if (map->height <= 0)
+	{
+		map->map = NULL;
 		return (false);
+	}
 	// exit_with_map_error(map, "Invalid map file", 0);
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
