@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 19:52:34 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/14 02:30:53 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	if (!map)
-		return ;
-	if (map->map)
+	if (!map || !map->map)
 	{
-		i = 0;
-		while (i < map->height)
-		{
-			free(map->map[i]);
-			i++;
-		}
-		free(map->map);
+		free(map);
+		return ;
 	}
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->map[i]);
+		i++;
+	}
+	free(map->map);
+	map->map = NULL;
 	free(map);
 }
 

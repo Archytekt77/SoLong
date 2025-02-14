@@ -6,7 +6,7 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 04:42:56 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/14 02:24:28 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ bool	init_map_structure(t_map *map, char *filename)
 {
 	map->height = count_lines(filename);
 	if (map->height <= 0)
-		exit_with_map_error(map, "Invalid map file", 0);
+		return (false);
+	// exit_with_map_error(map, "Invalid map file", 0);
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
 		exit_with_map_error(map, "Failed to allocate memory for map", 0);

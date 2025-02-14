@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 19:45:59 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/14 01:56:51 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,37 @@
 #include "error_handling.h"
 #include "so_long.h"
 
-// Vérifie si une ligne est bien fermée par des murs
-bool	is_line_closed(char *line, int width)
+/**
+ * Vérifie si une ligne est totalement composée de murs ('1').
+ */
+bool	is_full_wall_line(char *line, int width)
 {
-	if (line[0] != '1' || line[width - 1] != '1')
-		return (false);
+	int	i;
+
+	i = 0;
+	while (i < width)
+	{
+		if (line[i] != '1')
+			return (false);
+		i++;
+	}
 	return (true);
 }
 
-// Vérifier si la carte est fermée par des murs
+/**
+ * Vérifie si les bords de la carte sont fermés par des murs.
+ */
 bool	is_map_closed(t_map *map)
 {
 	int	i;
 
-	if (!is_line_closed(map->map[0], map->width)
-		|| !is_line_closed(map->map[map->height - 1], map->width))
+	if (!is_full_wall_line(map->map[0], map->width)
+		|| !is_full_wall_line(map->map[map->height - 1], map->width))
 		return (false);
 	i = 0;
 	while (i < map->height)
 	{
-		if (!is_line_closed(map->map[i], map->width))
+		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
 			return (false);
 		i++;
 	}
