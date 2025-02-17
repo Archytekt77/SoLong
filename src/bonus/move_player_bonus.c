@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_player_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 14:55:49 by lmaria            #+#    #+#             */
+/*   Updated: 2025/02/17 18:50:34 by lmaria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/Libft/libft.h"
 #include "../includes/so_long_bonus.h"
 
@@ -41,55 +53,17 @@ bool	can_move_to(t_game *game, int x, int y)
 }
 
 /**
- * Initialise un déplacement fluide vers la direction souhaitée.
+ * Déplace le joueur s'il peut se déplacer sur la nouvelle case.
  */
-void	start_movement(t_game *game, int dx, int dy)
+void	move_player(t_game *game, int dx, int dy)
 {
-	if (game->moving)
-		return ;
-	game->target_x = game->player_x + dx;
-	game->target_y = game->player_y + dy;
-	game->moving = 1;
-	if (dx > 0)
-		game->last_direction = DIR_RIGHT;
-	else if (dx < 0)
-		game->last_direction = DIR_LEFT;
-	else if (dy > 0)
-		game->last_direction = DIR_DOWN;
-	else if (dy < 0)
-		game->last_direction = DIR_UP;
-}
+	int	new_x;
+	int	new_y;
 
-/**
- * Gère le déplacement fluide du joueur.
- */
-int	update_movement(void *param)
-{
-	t_game	*game;
-	float	speed;
-
-	game = (t_game *)param;
-	if (!game->moving)
-		return (0);
-	speed = 0.1;
-	if (game->player_x < game->target_x)
-		game->player_x += speed;
-	if (game->player_x > game->target_x)
-		game->player_x -= speed;
-	if (game->player_y < game->target_y)
-		game->player_y += speed;
-	if (game->player_y > game->target_y)
-		game->player_y -= speed;
-	if (fabs(game->player_x - game->target_x) < speed && fabs(game->player_y
-			- game->target_y) < speed)
-	{
-		game->player_x = game->target_x;
-		game->player_y = game->target_y;
-		game->moving = 0;
-		game->moves++;
-		ft_printf("Moves: %d\n", game->moves);
-	}
-	return (0);
+	new_x = game->map->player_x + dx;
+	new_y = game->map->player_y + dy;
+	if (can_move_to(game, new_x, new_y))
+		update_position(game, new_x, new_y);
 }
 
 /**
@@ -100,12 +74,12 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == 65307)
 		close_window(game);
 	else if (keycode == 'w' || keycode == 65362)
-		start_movement(game, 0, -1);
+		move_player(game, 0, -1);
 	else if (keycode == 's' || keycode == 65364)
-		start_movement(game, 0, 1);
+		move_player(game, 0, 1);
 	else if (keycode == 'a' || keycode == 65361)
-		start_movement(game, -1, 0);
+		move_player(game, -1, 0);
 	else if (keycode == 'd' || keycode == 65363)
-		start_movement(game, 1, 0);
+		move_player(game, 1, 0);
 	return (0);
 }

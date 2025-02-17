@@ -10,7 +10,7 @@
 # include <string.h>
 # include <unistd.h>
 
-# define TILE_SIZE 64
+# define TILE_SIZE 100
 
 typedef enum e_direction
 {
@@ -37,23 +37,11 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_map		*map;
-	void		*textures[5];
-
+	void		*textures[4];
 	// Animations
 	void		*player_idle[4];
-	void		*player_run[6];
-	void		*player_death[6];
 
 	int			current_frame_idle;
-	int			current_frame_run;
-	int			current_frame_death;
-
-	// Position et mouvement
-	float		player_x;
-	float		player_y;
-	float		target_x;
-	float		target_y;
-	int			moving;
 	t_direction	last_direction;
 
 	int			moves;
@@ -61,9 +49,8 @@ typedef struct s_game
 
 # define WALL_TEXTURE 0
 # define FLOOR_TEXTURE 1
-# define PLAYER_TEXTURE 2
-# define COLLECTIBLE_TEXTURE 3
-# define EXIT_TEXTURE 4
+# define COLLECTIBLE_TEXTURE 2
+# define EXIT_TEXTURE 3
 
 // Prototypes
 t_map			*parse_map(char *filename);
@@ -77,7 +64,7 @@ bool			load_textures(t_game *game);
 int				handle_keypress(int keycode, t_game *game);
 bool			check_map_accessibility(t_map *map);
 void			start_movement(t_game *game, int dx, int dy);
-int				update_movement(void *param);
 int				animate_player(void *param);
+void			move_player(t_game *game, int dx, int dy);
 
 #endif

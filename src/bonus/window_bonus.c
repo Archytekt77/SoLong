@@ -1,5 +1,17 @@
-#include "../includes/minilibx-linux/mlx.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 14:56:01 by lmaria            #+#    #+#             */
+/*   Updated: 2025/02/17 18:49:39 by lmaria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/Libft/libft.h"
+#include "../includes/minilibx-linux/mlx.h"
 #include "../includes/so_long_bonus.h"
 #include "error_handling.h"
 
@@ -17,8 +29,6 @@ bool	init_window(t_game *game)
 	if (!load_textures(game))
 		exit_with_game_error(game, "Failed to load textures", 0);
 	render_map(game);
-	// Ajouter un hook pour l'animation et le mouvement
-	mlx_loop_hook(game->mlx, update_movement, game);
 	return (true);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 01:34:18 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 15:39:35 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	render_tile(t_game *game, int x, int y)
 	char	c;
 	void	*img;
 
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x * 64, y
-		* 64);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x * 100, y
+		* 100);
 	c = game->map->map[y][x];
 	img = get_tile_image(game, c);
 	if (img)
-		mlx_put_image_to_window(game->mlx, game->win, img, x * 64, y * 64);
+		mlx_put_image_to_window(game->mlx, game->win, img, x * 100, y * 100);
 	if (game->map->player_x == x && game->map->player_y == y)
-		mlx_put_image_to_window(game->mlx, game->win, game->textures[2], x * 64,
-			y * 64);
+		mlx_put_image_to_window(game->mlx, game->win, game->textures[2], x
+			* 100, y * 100);
 }
 
 /**

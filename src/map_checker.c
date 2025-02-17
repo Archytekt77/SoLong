@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 01:37:17 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 17:51:56 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ bool	process_map_element(t_map *map, char c, int i, int j)
 	if (c == 'P')
 	{
 		map->players++;
-		map->player_x = j;
+		map->player_x =	j;
 		map->player_y = i;
+		printf("📍 Joueur initialisé à (%d, %d)\n", map->player_x, map->player_y);
 	}
 	else if (c == 'E')
 		map->exits++;
