@@ -6,13 +6,13 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/14 02:30:53 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 01:34:04 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
 #include "../includes/minilibx-linux/mlx.h"
-#include "so_long.h"
+#include "../includes/so_long_bonus.h"
 #include <errno.h>
 
 /**

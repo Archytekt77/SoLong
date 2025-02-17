@@ -6,14 +6,14 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/14 01:44:34 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 01:32:46 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
 #include "../includes/minilibx-linux/mlx.h"
+#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
-#include "so_long.h"
 
 bool	init_window(t_game *game)
 {

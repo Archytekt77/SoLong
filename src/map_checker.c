@@ -6,13 +6,13 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/14 01:56:51 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 01:37:17 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
+#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
-#include "so_long.h"
 
 /**
  * Vérifie si une ligne est totalement composée de murs ('1').

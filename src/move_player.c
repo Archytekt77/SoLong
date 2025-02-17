@@ -6,12 +6,12 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 03:31:47 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 01:33:47 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
-#include "so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	update_position(t_game *game, int new_x, int new_y)
 {
@@ -29,6 +29,9 @@ void	update_position(t_game *game, int new_x, int new_y)
 	render_map(game);
 }
 
+/**
+ * Vérifie si le joueur peut se déplacer à la position donnée.
+ */
 bool	can_move_to(t_game *game, int x, int y)
 {
 	char	cell;

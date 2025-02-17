@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/14 16:47:04 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/17 01:37:23 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
+#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
-#include "so_long.h"
 #include <fcntl.h>
 
 // Compte le nombre de lignes dans le fichier

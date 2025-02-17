@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 15:03:37 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 01:33:57 by archytekt        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/minilibx-linux/mlx.h"
 #include "../includes/so_long_bonus.h"
 #include "error_handling.h"
@@ -47,8 +35,13 @@ int	main(int argc, char **argv)
 	if (!init_window(&game))
 		exit_with_game_error(&game, "Failed to initialize game", 0);
 	game.moves = 0;
+	game.moving = 0;
+	game.current_frame_idle = 0;
+	game.current_frame_run = 0;
+	game.current_frame_death = 0;
 	mlx_key_hook(game.win, handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
+	mlx_loop_hook(game.mlx, animate_player, &game);
 	mlx_loop(game.mlx);
 	free_game(&game);
 	return (0);

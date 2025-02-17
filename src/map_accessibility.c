@@ -6,13 +6,13 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:39 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/13 05:07:55 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/17 01:37:12 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
+#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
-#include "so_long.h"
 
 /**
  * Libère une copie de la carte.
