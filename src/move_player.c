@@ -3,40 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 02:08:28 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/18 19:16:35 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
 #include "so_long.h"
-
-void	update_position(t_game *game, int new_x, int new_y)
-{
-	char	current_cell;
-
-	current_cell = game->map->map[new_y][new_x];
-	if (current_cell == 'C')
-	{
-		if (game->map->collectibles == 0)
-			return ;
-		if (game->map->collectibles > 0)
-		{
-			ft_printf("You collected an item!\n");
-			// game->map->map[new_y][new_x] = '0';
-			game->map->collectibles--;
-		}
-	}
-	game->map->map[game->map->player_y][game->map->player_x] = '0';
-	game->map->map[new_y][new_x] = 'P';
-	game->map->player_x = new_x;
-	game->map->player_y = new_y;
-	game->moves++;
-	ft_printf("Moves: %d\n", game->moves);
-	render_map(game);
-}
 
 bool	can_move_to(t_game *game, int x, int y)
 {

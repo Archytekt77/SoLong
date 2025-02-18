@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/18 01:35:49 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/18 19:16:20 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ bool	init_window(t_game *game)
 		exit_with_game_error(game, "Failed to create window", 0);
 	if (!load_textures(game))
 		exit_with_game_error(game, "Failed to load textures", 0);
-	render_map(game);
+	render_background(game);
+	render_player(game);
+	mlx_loop_hook(game->mlx, animate_collectibles, game);
+	mlx_key_hook(game->win, handle_keypress, game);
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_loop(game->mlx);
 	return (true);
 }
 
