@@ -6,7 +6,7 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 02:38:26 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/18 03:06:24 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*get_tile_image(t_game *game, char c)
 	if (c == '1')
 		return (game->textures[WALL_TEXTURE]);
 	if (c == 'C')
-		return (game->textures[COLLECTIBLE_TEXTURE]);
+	return (game->collectible_textures[game->collectible_frame]);
 	if (c == 'E')
 	{
 		if (game->map->collectibles == 0)

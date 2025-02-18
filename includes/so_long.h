@@ -6,7 +6,7 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:58 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 01:34:25 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/18 03:00:15 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include <unistd.h>
 
 # define TILE_SIZE 100
+# define WALL_TEXTURE 0
+# define FLOOR_TEXTURE 1
+# define PLAYER_TEXTURE 2
+# define COLLECTIBLE_TEXTURE 3
+# define EXIT_TEXTURE 4
+# define EXIT_OPEN_TEXTURE 5
+# define COLLECTIBLE_FRAME 12
 
 typedef struct s_map
 {
@@ -40,15 +47,12 @@ typedef struct s_game
 	void	*win;
 	t_map	*map;
 	void	*textures[6];
+	void	*collectible_textures[COLLECTIBLE_FRAME];
+	int		collectible_frame;
 	int		moves;
 }			t_game;
 
-# define WALL_TEXTURE 0
-# define FLOOR_TEXTURE 1
-# define PLAYER_TEXTURE 2
-# define COLLECTIBLE_TEXTURE 3
-# define EXIT_TEXTURE 4
-# define EXIT_OPEN_TEXTURE 5
+
 
 // Prototypes
 t_map		*parse_map(char *filename);
