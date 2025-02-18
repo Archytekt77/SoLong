@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 15:39:35 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/18 02:38:26 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long_bonus.h"
-#include "../minilibx-linux/mlx.h"
+#include "./minilibx-linux/mlx.h"
+#include "so_long.h"
+
+// void	print_map(t_game *game)
+// {
+// 	int	i;
+
+// 	printf("\n=== Carte après Flood Fill ===\n");
+// 	i = 0;
+// 	while (i < game->map->height)
+// 	{
+// 		printf("%s\n", game->map->map[i]);
+// 		i++;
+// 	}
+// 	printf("==============================\n");
+// }
 
 /**
  * Retourne l'image correspondant à un élément de la carte.
@@ -19,11 +33,15 @@
 void	*get_tile_image(t_game *game, char c)
 {
 	if (c == '1')
-		return (game->textures[0]);
+		return (game->textures[WALL_TEXTURE]);
 	if (c == 'C')
-		return (game->textures[3]);
+		return (game->textures[COLLECTIBLE_TEXTURE]);
 	if (c == 'E')
-		return (game->textures[4]);
+	{
+		if (game->map->collectibles == 0)
+			return (game->textures[EXIT_OPEN_TEXTURE]);
+		return (game->textures[EXIT_TEXTURE]);
+	}
 	return (NULL);
 }
 
@@ -35,15 +53,16 @@ void	render_tile(t_game *game, int x, int y)
 	char	c;
 	void	*img;
 
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x * 100, y
-		* 100);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[1], x
+		* TILE_SIZE, y * TILE_SIZE);
 	c = game->map->map[y][x];
 	img = get_tile_image(game, c);
 	if (img)
-		mlx_put_image_to_window(game->mlx, game->win, img, x * 100, y * 100);
+		mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y
+			* TILE_SIZE);
 	if (game->map->player_x == x && game->map->player_y == y)
 		mlx_put_image_to_window(game->mlx, game->win, game->textures[2], x
-			* 100, y * 100);
+			* TILE_SIZE, y * TILE_SIZE);
 }
 
 /**
@@ -65,4 +84,5 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
+	// print_map(game);
 }

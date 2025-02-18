@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:58 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/14 16:54:09 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/18 01:34:25 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+# define TILE_SIZE 100
 
 typedef struct s_map
 {
@@ -37,7 +39,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	void	*textures[5];
+	void	*textures[6];
 	int		moves;
 }			t_game;
 
@@ -46,6 +48,7 @@ typedef struct s_game
 # define PLAYER_TEXTURE 2
 # define COLLECTIBLE_TEXTURE 3
 # define EXIT_TEXTURE 4
+# define EXIT_OPEN_TEXTURE 5
 
 // Prototypes
 t_map		*parse_map(char *filename);

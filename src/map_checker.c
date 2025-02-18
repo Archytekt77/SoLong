@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:56 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/18 02:40:26 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
-#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
+#include "so_long.h"
 
 /**
  * Vérifie si une ligne est totalement composée de murs ('1').
@@ -48,7 +48,6 @@ bool	is_map_closed(t_map *map)
 			return (false);
 		i++;
 	}
-	printf("Map is closed by walls.\n");
 	return (true);
 }
 
@@ -60,9 +59,8 @@ bool	process_map_element(t_map *map, char c, int i, int j)
 	if (c == 'P')
 	{
 		map->players++;
-		map->player_x =	j;
+		map->player_x = j;
 		map->player_y = i;
-		printf("📍 Joueur initialisé à (%d, %d)\n", map->player_x, map->player_y);
 	}
 	else if (c == 'E')
 		map->exits++;

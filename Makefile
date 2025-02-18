@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+         #
+#    By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:20:43 by lmaria            #+#    #+#              #
-#    Updated: 2025/02/17 14:45:06 by lmaria           ###   ########.fr        #
+#    Updated: 2025/02/13 03:42:12 by archytekt        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Nom de l'exécutable
-NAME = so_long_bonus
+NAME = so_long
 
 # Compilateur et flags
 CC = gcc
@@ -19,22 +19,15 @@ CFLAGS = -Wall -Wextra -Werror -no-pie
 
 # Dossiers
 SRC_DIR = src
-BONUS_DIR = src/bonus
 OBJ_DIR = obj
 INC_DIR = includes
 MLX_DIR = includes/minilibx-linux
 LIBFT_DIR = includes/Libft
 
 # Fichiers source
-SRC_FILES = map_parser.c map_checker.c map_utils.c  map_accessibility.c error_handling.c
-BONUS_FILES = main_bonus.c display_bonus.c window_bonus.c textures_bonus.c move_player_bonus.c
-
-# Chemins des fichiers source
+SRC_FILES = main.c map_parser.c map_checker.c display.c window.c textures.c map_utils.c move_player.c map_accessibility.c error_handling.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-SRCS_BONUS = $(addprefix $(BONUS_DIR)/, $(BONUS_FILES))
-
-# Fichiers objets
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o) $(BONUS_FILES:.c=.o))
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 # Flags pour MiniLibX et Libft
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
@@ -50,9 +43,6 @@ $(NAME): $(OBJS) $(MLX_DIR)/libmlx.a $(LIBFT_DIR)/libft.a
 
 # Compilation des fichiers objets
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INC_DIR) $(LIBFT_INC) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) $(LIBFT_INC) -c $< -o $@
 
 # Compilation de MiniLibX et Libft
@@ -81,4 +71,4 @@ fclean: clean
 re: fclean all
 
 # Règles pour éviter les erreurs Make
-.PHONY: all clean fclean re
+.PHONY: all clean f

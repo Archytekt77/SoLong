@@ -6,13 +6,13 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:39 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 01:37:12 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/18 02:27:14 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
-#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
+#include "so_long.h"
 
 /**
  * Libère une copie de la carte.
@@ -37,6 +37,11 @@ void	flood_fill(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'V')
 		return ;
+	if (map[y][x] == 'E')
+	{
+		map[y][x] = 'V';
+		return ;
+	}
 	map[y][x] = 'V';
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);

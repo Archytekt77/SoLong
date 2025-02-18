@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 18:43:40 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/18 02:08:28 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Libft/libft.h"
-#include "../includes/so_long_bonus.h"
+#include "so_long.h"
 
 void	update_position(t_game *game, int new_x, int new_y)
 {
@@ -19,7 +19,16 @@ void	update_position(t_game *game, int new_x, int new_y)
 
 	current_cell = game->map->map[new_y][new_x];
 	if (current_cell == 'C')
-		game->map->collectibles--;
+	{
+		if (game->map->collectibles == 0)
+			return ;
+		if (game->map->collectibles > 0)
+		{
+			ft_printf("You collected an item!\n");
+			// game->map->map[new_y][new_x] = '0';
+			game->map->collectibles--;
+		}
+	}
 	game->map->map[game->map->player_y][game->map->player_x] = '0';
 	game->map->map[new_y][new_x] = 'P';
 	game->map->player_x = new_x;
@@ -29,9 +38,6 @@ void	update_position(t_game *game, int new_x, int new_y)
 	render_map(game);
 }
 
-/**
- * Vérifie si le joueur peut se déplacer à la position donnée.
- */
 bool	can_move_to(t_game *game, int x, int y)
 {
 	char	cell;

@@ -6,13 +6,13 @@
 /*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:03:37 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/17 01:33:57 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/18 02:36:50 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minilibx-linux/mlx.h"
-#include "../includes/so_long_bonus.h"
 #include "error_handling.h"
+#include "so_long.h"
 
 bool	file_exists(char *filename)
 {
@@ -44,9 +44,9 @@ int	main(int argc, char **argv)
 		exit_with_game_error(&game, "Invalid map", 0);
 	if (!check_map_accessibility(game.map))
 		exit_with_game_error(&game, "Map is not playable", 0);
+	game.moves = 0;
 	if (!init_window(&game))
 		exit_with_game_error(&game, "Failed to initialize game", 0);
-	game.moves = 0;
 	mlx_key_hook(game.win, handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
