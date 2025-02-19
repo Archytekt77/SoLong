@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 14:27:19 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/19 02:23:26 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Libft/libft.h"
-#include "error_handling.h"
-#include "so_long.h"
+#include "../Libft/libft.h"
+#include "game.h"
+#include "system.h"
 
 /**
  * Vérifie si une ligne est totalement composée de murs ('1').

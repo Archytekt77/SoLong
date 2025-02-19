@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:58 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/18 14:27:27 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/19 02:38:46 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Libft/libft.h"
-#include "error_handling.h"
+#include "../Libft/libft.h"
+#include "system.h"
 
 // Vérifie si toutes les lignes de la carte ont la même largeur
 bool	is_map_width_valid(t_map *map)

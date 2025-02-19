@@ -3,32 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_accessibility.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:39 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 14:27:16 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/19 02:23:22 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Libft/libft.h"
-#include "error_handling.h"
-#include "so_long.h"
-
-/**
- * Libère une copie de la carte.
- */
-void	free_map_copy(char **map_copy, int height)
-{
-	int	i;
-
-	i = 0;
-	while (i < height)
-	{
-		free(map_copy[i]);
-		i++;
-	}
-	free(map_copy);
-}
+#include "../Libft/libft.h"
+#include "game.h"
+#include "system.h"
 
 /**
  * Remplit la carte en marquant les zones accessibles avec 'V'.

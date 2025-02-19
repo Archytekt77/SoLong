@@ -6,7 +6,7 @@
 #    By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:20:43 by lmaria            #+#    #+#              #
-#    Updated: 2025/02/13 03:42:12 by archytekt        ###   ########.fr        #
+#    Updated: 2025/02/19 02:40:47 by archytekt        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ CFLAGS = -Wall -Wextra -Werror -no-pie
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = includes
-MLX_DIR = includes/minilibx-linux
-LIBFT_DIR = includes/Libft
+MLX_DIR = minilibx-linux
+LIBFT_DIR = Libft
 
 # Fichiers source
-SRC_FILES = main.c map_parser.c map_checker.c display.c window.c textures.c map_utils.c move_player.c map_accessibility.c error_handling.c
+SRC_FILES = main.c map_parser.c map_checker.c display.c window.c textures.c map_utils.c move_player.c map_accessibility.c errors.c memory.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 

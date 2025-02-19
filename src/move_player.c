@@ -3,39 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 19:16:35 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/19 02:39:17 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Libft/libft.h"
-#include "so_long.h"
+#include "../Libft/libft.h"
+#include "../minilibx-linux/mlx.h"
+#include "game.h"
 
-bool	can_move_to(t_game *game, int x, int y)
+bool	check_tile_effect(t_game *game, int new_x, int new_y)
 {
-	char	cell;
+	char	tile;
 
-	cell = game->map->map[y][x];
-	if (cell == '1')
+	tile = game->map->map[new_y][new_x];
+	if (tile == '1')
 		return (false);
-	if (cell == 'E' && game->map->collectibles > 0)
+	if (tile == 'C')
 	{
-		ft_printf("You must collect all items before exiting!\n");
-		return (false);
+		ft_printf("You collected an item!\n");
+		game->map->collectibles--;
 	}
-	if (cell == 'E' && game->map->collectibles == 0)
+	if (tile == 'E')
 	{
+		if (game->map->collectibles > 0)
+		{
+			ft_printf("You must collect all items before exiting!\n");
+			return (false);
+		}
 		ft_printf("You won in %d moves!\n", game->moves + 1);
 		close_window(game);
 	}
 	return (true);
 }
 
-/**
- * Déplace le joueur s'il peut se déplacer sur la nouvelle case.
- */
 void	move_player(t_game *game, int dx, int dy)
 {
 	int	new_x;
@@ -43,24 +46,15 @@ void	move_player(t_game *game, int dx, int dy)
 
 	new_x = game->map->player_x + dx;
 	new_y = game->map->player_y + dy;
-	if (can_move_to(game, new_x, new_y))
-		update_position(game, new_x, new_y);
-}
-
-/**
- * Gère les entrées clavier du joueur.
- */
-int	handle_keypress(int keycode, t_game *game)
-{
-	if (keycode == 65307)
-		close_window(game);
-	else if (keycode == 'w' || keycode == 65362)
-		move_player(game, 0, -1);
-	else if (keycode == 's' || keycode == 65364)
-		move_player(game, 0, 1);
-	else if (keycode == 'a' || keycode == 65361)
-		move_player(game, -1, 0);
-	else if (keycode == 'd' || keycode == 65363)
-		move_player(game, 1, 0);
-	return (0);
+	if (!check_tile_effect(game, new_x, new_y))
+		return ;
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[FLOOR_TEXTURE],
+		game->map->player_x * TILE_SIZE, game->map->player_y * TILE_SIZE);
+	game->map->map[game->map->player_y][game->map->player_x] = '0';
+	game->map->map[new_y][new_x] = 'P';
+	game->map->player_x = new_x;
+	game->map->player_y = new_y;
+	game->moves++;
+	ft_printf("Moves: %d\n", game->moves);
+	render_player(game);
 }

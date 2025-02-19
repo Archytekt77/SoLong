@@ -3,17 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/18 19:16:20 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/19 02:40:19 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Libft/libft.h"
-#include "../includes/minilibx-linux/mlx.h"
-#include "error_handling.h"
-#include "so_long.h"
+#include "../Libft/libft.h"
+#include "../minilibx-linux/mlx.h"
+#include "system.h"
+#include "game.h"
+
+int	handle_keypress(int keycode, t_game *game)
+{
+	if (keycode == 65307)
+		close_window(game);
+	else if (keycode == 'w' || keycode == 65362)
+		move_player(game, 0, -1);
+	else if (keycode == 's' || keycode == 65364)
+		move_player(game, 0, 1);
+	else if (keycode == 'a' || keycode == 65361)
+		move_player(game, -1, 0);
+	else if (keycode == 'd' || keycode == 65363)
+		move_player(game, 1, 0);
+	return (0);
+}
 
 bool	init_window(t_game *game)
 {
@@ -26,14 +41,8 @@ bool	init_window(t_game *game)
 			game->map->height * TILE_SIZE, "so_long");
 	if (!game->win)
 		exit_with_game_error(game, "Failed to create window", 0);
-	if (!load_textures(game))
-		exit_with_game_error(game, "Failed to load textures", 0);
-	render_background(game);
-	render_player(game);
-	mlx_loop_hook(game->mlx, animate_collectibles, game);
-	mlx_key_hook(game->win, handle_keypress, game);
-	mlx_hook(game->win, 17, 0, close_window, game);
-	mlx_loop(game->mlx);
+	load_textures(game);
+	render_map(game);
 	return (true);
 }
 
@@ -41,5 +50,5 @@ int	close_window(t_game *game)
 {
 	free_game(game);
 	ft_printf("Game closed.\n");
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

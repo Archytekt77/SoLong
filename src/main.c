@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:03:37 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/18 19:15:13 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/19 02:23:16 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minilibx-linux/mlx.h"
-#include "error_handling.h"
-#include "so_long.h"
+#include "../minilibx-linux/mlx.h"
+#include "game.h"
+#include "system.h"
 
 bool	file_exists(char *filename)
 {
@@ -47,6 +47,9 @@ int	main(int argc, char **argv)
 	game.moves = 0;
 	if (!init_window(&game))
 		exit_with_game_error(&game, "Failed to initialize game", 0);
+	mlx_key_hook(game.win, handle_keypress, &game);
+	mlx_hook(game.win, 17, 0, close_window, &game);
+	mlx_loop(game.mlx);
 	free_game(&game);
 	return (0);
 }
