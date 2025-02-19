@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/19 02:38:05 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/19 22:07:02 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	count_lines(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		exit_with_map_error(NULL, "Failed to open file", 1);
+		return (false);
 	lines = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -101,7 +101,11 @@ t_map	*parse_map(char *filename)
 	if (!map)
 		exit_with_map_error(NULL, "Memory allocation failed", 0);
 	if (!init_map_structure(map, filename))
-		exit_with_map_error(map, "Failed to initialize map structure", 0);
+	{
+		free(map);
+		return (NULL);
+	}
+	// exit_with_map_error(map, "Failed to initialize map structure", 0);
 	if (!fill_map(map, filename))
 		exit_with_map_error(map, "Failed to read map file", 0);
 	map->width = ft_strlen(map->map[0]);

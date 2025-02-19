@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/19 02:43:32 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/19 21:31:44 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 #include "system.h"
 #include <errno.h>
 
-void	exit_with_parsing_error(char *msg, int use_errno)
+static void	exit_with_parsing_error(char *msg, int use_errno)
 {
 	if (use_errno)
 		ft_printf("Error: %s: %s\n", msg, strerror(errno));
 	else
 		ft_printf("Error: %s\n", msg);
-	exit(EXIT_FAILURE);
 }
 
 void	exit_with_game_error(t_game *game, char *msg, int use_errno)

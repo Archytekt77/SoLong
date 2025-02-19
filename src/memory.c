@@ -9,10 +9,7 @@ void	free_map(t_map *map)
 	int	i;
 
 	if (!map || !map->map)
-	{
-		free(map);
 		return ;
-	}
 	i = 0;
 	while (i < map->height)
 	{
@@ -54,8 +51,11 @@ void	free_textures(t_game *game)
 	i = 0;
 	while (i < TEXTURES_TAB)
 	{
-		if (game->textures[i])
+		if (game->textures[i] != NULL)
+		{
 			mlx_destroy_image(game->mlx, game->textures[i]);
+			game->textures[i] = NULL;
+		}
 		i++;
 	}
 }

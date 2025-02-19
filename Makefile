@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+         #
+#    By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:20:43 by lmaria            #+#    #+#              #
-#    Updated: 2025/02/19 02:40:47 by archytekt        ###   ########.fr        #
+#    Updated: 2025/02/19 13:55:58 by lmaria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLX_DIR = minilibx-linux
 LIBFT_DIR = Libft
 
 # Fichiers source
-SRC_FILES = main.c map_parser.c map_checker.c display.c window.c textures.c map_utils.c move_player.c map_accessibility.c errors.c memory.c
+SRC_FILES = main.c map_parser.c map_checker.c display.c window.c textures.c map_utils.c move_player.c map_accessibility.c errors.c memory.c so_long.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
