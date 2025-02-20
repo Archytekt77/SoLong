@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:48:41 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/19 22:06:12 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/20 17:03:01 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 #include "game.h"
 #include "system.h"
 
-t_game	*game_init(t_game *game)
+t_game	*game_init(t_map *map)
 {
-	int	i;
+	t_game	*game;
 
-	i = 0;
-	game->mlx = NULL;
-	game->win = NULL;
-	game->map = NULL;
-	while (i < TEXTURES_TAB)
-	{
-		game->textures[i] = NULL;
-		i++;
-	}
+	game = malloc(sizeof(t_game));
+	if (!game)
+		exit_with_game_error(NULL, "Memory allocation failed", 0);
+	game->map = map;
 	game->moves = 0;
 	return (game);
 }
@@ -34,21 +29,13 @@ t_game	*game_init(t_game *game)
 void	so_long_init(char *filename)
 {
 	t_game	*game;
+	t_map	*map;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		exit_with_game_error(NULL, "Memory allocation failed", 0);
-	game_init(game);
-	game->map = parse_map(filename);
-	if (!game->map || !check_map_validity(game->map)
-		|| !check_map_accessibility(game->map))
-	{
-		printf("Here 4\n");
-		free(game);
-		exit_with_game_error(NULL, "Invalid map", 0);
-	}
-	// exit_with_game_error(game, "Invalid map", 0);
-	if (!init_window(game))
+	map = parse_map(filename);
+	if (!map || !check_map_validity(map) || !check_map_accessibility(map))
+		exit_with_map_error(NULL, "Invalid map", 0);
+	game = game_init(map);
+	if (!game || !init_window(game))
 		exit_with_game_error(game, "Failed to initialize game", 0);
 	mlx_key_hook(game->win, handle_keypress, game);
 	mlx_hook(game->win, 17, 0, close_window, game);

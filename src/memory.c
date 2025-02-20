@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   memory.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/20 16:56:00 by lmaria            #+#    #+#             */
+/*   Updated: 2025/02/20 16:56:01 by lmaria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minilibx-linux/mlx.h"
 #include "game.h"
 
@@ -67,14 +79,16 @@ void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
-	free_textures(game);
+	if (game->textures)
+		free_textures(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	if (game->map)
+		free_map(game->map);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	if (game->map)
-		free_map(game->map);
+	free(game);
 }
