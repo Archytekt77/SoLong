@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:48:41 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/20 17:03:01 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/21 18:49:59 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "game.h"
 #include "system.h"
 
-t_game	*game_init(t_map *map)
+t_game	*init_game_structure(t_map *map)
 {
 	t_game	*game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
-		exit_with_game_error(NULL, "Memory allocation failed", 0);
+		exit_with_game_error(NULL,
+			"Failed to allocate memory for game structure", 0);
 	game->map = map;
 	game->moves = 0;
 	return (game);
@@ -32,11 +33,10 @@ void	so_long_init(char *filename)
 	t_map	*map;
 
 	map = parse_map(filename);
-	if (!map || !check_map_validity(map) || !check_map_accessibility(map))
-		exit_with_map_error(NULL, "Invalid map", 0);
-	game = game_init(map);
-	if (!game || !init_window(game))
-		exit_with_game_error(game, "Failed to initialize game", 0);
+	check_map_validity(map);
+	check_map_accessibility(map);
+	game = init_game_structure(map);
+	init_window(game);
 	mlx_key_hook(game->win, handle_keypress, game);
 	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_loop(game->mlx);

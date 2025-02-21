@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:00 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/20 16:56:01 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/21 18:28:47 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,23 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	if (!map || !map->map)
+	if (!map)
 		return ;
-	i = 0;
-	while (i < map->height)
+	if (map->map)
 	{
-		free(map->map[i]);
-		i++;
+		i = 0;
+		while (i < map->height)
+		{
+			if (map->map[i])
+			{
+				free(map->map[i]);
+				map->map[i] = NULL;
+			}
+			i++;
+		}
+		free(map->map);
+		map->map = NULL;
 	}
-	free(map->map);
-	map->map = NULL;
 	free(map);
 }
 

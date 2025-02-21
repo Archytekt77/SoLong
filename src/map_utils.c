@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:58 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/19 02:38:46 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/21 18:19:17 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ bool	is_map_width_valid(t_map *map)
 	int	i;
 
 	i = 0;
+	map->width = ft_strlen(map->map[0]);
 	while (map->map[i])
 	{
 		current_width = ft_strlen(map->map[i]);
 		if (current_width != map->width)
-		{
-			exit_with_map_error(map, "Map lines have inconsistent width", 0);
 			return (false);
-		}
 		i++;
 	}
 	return (true);
