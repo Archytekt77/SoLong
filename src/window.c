@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/19 02:40:19 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/24 13:23:07 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ int	handle_keypress(int keycode, t_game *game)
 	return (0);
 }
 
+
+int	close_window(t_game *game)
+{
+	free_game(game);
+	ft_printf("Game closed.\n");
+	exit(EXIT_SUCCESS);
+}
+
 bool	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -44,11 +52,4 @@ bool	init_window(t_game *game)
 	load_textures(game);
 	render_map(game);
 	return (true);
-}
-
-int	close_window(t_game *game)
-{
-	free_game(game);
-	ft_printf("Game closed.\n");
-	exit(EXIT_SUCCESS);
 }

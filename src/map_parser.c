@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/21 18:43:06 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:20:52 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include "game.h"
 #include "system.h"
 
-// Lit une ligne et enlève le '\n' à la fin si nécessaire
-bool	read_map_line(int fd, t_map *map, int i)
+/*
+	Lit une ligne et enlève le '\n' à la fin si nécessaire
+*/
+static bool	read_map_line(int fd, t_map *map, int i)
 {
 	char	*line;
 
@@ -32,8 +34,10 @@ bool	read_map_line(int fd, t_map *map, int i)
 	return (true);
 }
 
-// Remplit `map->map` avec `get_next_line`
-bool	fill_map(t_map *map, char *filename)
+/*
+	Remplit `map->map` avec `get_next_line`
+*/
+static bool	fill_map(t_map *map, char *filename)
 {
 	int	fd;
 	int	i;
@@ -52,8 +56,10 @@ bool	fill_map(t_map *map, char *filename)
 	return (true);
 }
 
-// Compte le nombre de lignes dans le fichier
-int	count_lines(char *filename)
+/*
+	Compte le nombre de lignes dans le fichier
+*/
+static int	count_lines(char *filename)
 {
 	char	*line;
 	int		fd;
@@ -74,8 +80,10 @@ int	count_lines(char *filename)
 	return (lines);
 }
 
-// Initialise la structure map
-t_map	*init_map_structure(t_map *map, char *filename)
+/*
+	Initialise la structure map
+*/
+static t_map	*init_map_structure(t_map *map, char *filename)
 {
 	int	i;
 
@@ -104,7 +112,9 @@ t_map	*init_map_structure(t_map *map, char *filename)
 	return (map);
 }
 
-// Fonction principale pour parser la carte
+/*
+	Fonction principale pour parser la carte
+*/
 t_map	*parse_map(char *filename)
 {
 	t_map	*map;

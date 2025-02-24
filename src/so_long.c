@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:48:41 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/21 18:49:59 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:14:37 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "game.h"
 #include "system.h"
 
-t_game	*init_game_structure(t_map *map)
+static t_game	*init_game_structure(t_map *map)
 {
 	t_game	*game;
 

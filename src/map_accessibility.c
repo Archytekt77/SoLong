@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_accessibility.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:39 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/19 02:23:22 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/24 13:21:43 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,30 @@
 #include "system.h"
 
 /**
+ * Vérifie si la carte est jouable après le flood fill.
+ */
+static bool	is_map_solvable(char **map_copy, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		if (ft_strchr(map_copy[i], 'C') || ft_strchr(map_copy[i], 'E'))
+		{
+			free_map_copy(map_copy, map->height);
+			exit_with_map_error(map,
+				"Map is not solvable: unreachable collectibles or exit.", 0);
+		}
+		i++;
+	}
+	return (true);
+}
+
+/**
  * Remplit la carte en marquant les zones accessibles avec 'V'.
  */
-void	flood_fill(char **map, int x, int y)
+static void	flood_fill(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'V')
 		return ;
@@ -36,7 +57,7 @@ void	flood_fill(char **map, int x, int y)
 /**
  * Copie la carte et vérifie les erreurs d'allocation.
  */
-char	**copy_map(t_map *map)
+static char	**copy_map(t_map *map)
 {
 	char	**map_copy;
 	int		i;
@@ -57,27 +78,6 @@ char	**copy_map(t_map *map)
 	}
 	map_copy[i] = NULL;
 	return (map_copy);
-}
-
-/**
- * Vérifie si la carte est jouable après le flood fill.
- */
-bool	is_map_solvable(char **map_copy, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->height)
-	{
-		if (ft_strchr(map_copy[i], 'C') || ft_strchr(map_copy[i], 'E'))
-		{
-			free_map_copy(map_copy, map->height);
-			exit_with_map_error(map,
-				"Map is not solvable: unreachable collectibles or exit.", 0);
-		}
-		i++;
-	}
-	return (true);
 }
 
 /**

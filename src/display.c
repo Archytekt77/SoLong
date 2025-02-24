@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/19 02:43:42 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/24 13:25:51 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,22 @@
 #include "../minilibx-linux/mlx.h"
 #include "game.h"
 
-void	*get_tile_image(t_game *game, char c)
+void	render_player(t_game *game)
+{
+	void	*img;
+
+	img = game->textures[PLAYER_TEXTURE];
+	if (!img)
+		return ;
+	mlx_put_image_to_window(game->mlx, game->win, img, game->map->player_x
+		* TILE_SIZE, game->map->player_y * TILE_SIZE);
+}
+
+static void	*get_tile_image(t_game *game, char c)
 {
 	static const char	tiles[] = {'0', '1', 'P', 'C', 'E'};
 	static const int	textures[] = {FLOOR_TEXTURE, WALL_TEXTURE,
-		PLAYER_TEXTURE, COLLECTIBLE_TEXTURE, EXIT_TEXTURE};
+			PLAYER_TEXTURE, COLLECTIBLE_TEXTURE, EXIT_TEXTURE};
 	int					i;
 
 	i = 0;
@@ -34,9 +45,9 @@ void	*get_tile_image(t_game *game, char c)
 
 void	render_map(t_game *game)
 {
-	int		x;
-	int		y;
-	void	*img;
+	int x;
+	int y;
+	void *img;
 
 	y = 0;
 	while (y < game->map->height)
@@ -52,15 +63,4 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
-}
-
-void	render_player(t_game *game)
-{
-	void	*img;
-
-	img = game->textures[PLAYER_TEXTURE];
-	if (!img)
-		return ;
-	mlx_put_image_to_window(game->mlx, game->win, img, game->map->player_x
-		* TILE_SIZE, game->map->player_y * TILE_SIZE);
 }

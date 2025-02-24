@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/19 02:39:17 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/24 13:28:16 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../minilibx-linux/mlx.h"
 #include "game.h"
 
-bool	check_tile_effect(t_game *game, int new_x, int new_y)
+static bool	check_tile_effect(t_game *game, int new_x, int new_y)
 {
 	char	tile;
 

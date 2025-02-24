@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/21 16:07:04 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:18:51 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,9 @@
 #include "system.h"
 
 /**
- * Vérifie si une ligne est totalement composée de murs ('1').
- */
-bool	is_full_wall_line(char *line, int width)
-{
-	int	i;
-
-	i = 0;
-	while (i < width)
-	{
-		if (line[i] != '1')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-/**
- * Vérifie si les bords de la carte sont fermés par des murs.
- */
-bool	is_map_closed(t_map *map)
-{
-	int	i;
-
-	if (!is_full_wall_line(map->map[0], map->width)
-		|| !is_full_wall_line(map->map[map->height - 1], map->width))
-		return (false);
-	i = 0;
-	while (i < map->height)
-	{
-		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-/**
  * Vérifie et compte les éléments de la carte.
  */
-bool	process_map_element(t_map *map, char c, int i, int j)
+static bool	process_map_element(t_map *map, char c, int i, int j)
 {
 	if (c == 'P')
 	{
@@ -72,7 +35,7 @@ bool	process_map_element(t_map *map, char c, int i, int j)
 }
 
 // Vérifier les caractères valides et compter les éléments
-bool	check_elements(t_map *map)
+static bool	check_elements(t_map *map)
 {
 	int	i;
 	int	j;
@@ -92,6 +55,43 @@ bool	check_elements(t_map *map)
 	ft_printf("Total Players: %d, Exits: %d, Collectibles: %d\n", map->players,
 		map->exits, map->collectibles);
 	return (map->players == 1 && map->exits == 1 && map->collectibles > 0);
+}
+
+/**
+ * Vérifie si une ligne est totalement composée de murs ('1').
+ */
+static bool	is_full_wall_line(char *line, int width)
+{
+	int	i;
+
+	i = 0;
+	while (i < width)
+	{
+		if (line[i] != '1')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+/**
+ * Vérifie si les bords de la carte sont fermés par des murs.
+ */
+static bool	is_map_closed(t_map *map)
+{
+	int	i;
+
+	if (!is_full_wall_line(map->map[0], map->width)
+		|| !is_full_wall_line(map->map[map->height - 1], map->width))
+		return (false);
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 // Fonction principale pour vérifier la validité de la carte

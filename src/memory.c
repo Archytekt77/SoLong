@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:00 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/21 18:28:47 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:14:01 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	free_map_copy(char **map_copy, int height)
 /**
  * Libère la mémoire allouée pour les textures.
  */
-void	free_textures(t_game *game)
+static void	free_textures(t_game *game)
 {
 	int	i;
 
