@@ -6,14 +6,17 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:25:51 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:58:27 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
 #include "game.h"
 
+/*
+ * Renders the player on the window.
+ */
 void	render_player(t_game *game)
 {
 	void	*img;
@@ -25,11 +28,14 @@ void	render_player(t_game *game)
 		* TILE_SIZE, game->map->player_y * TILE_SIZE);
 }
 
+/*
+ * Retrieves the appropriate texture for a given tile character.
+ */
 static void	*get_tile_image(t_game *game, char c)
 {
 	static const char	tiles[] = {'0', '1', 'P', 'C', 'E'};
 	static const int	textures[] = {FLOOR_TEXTURE, WALL_TEXTURE,
-			PLAYER_TEXTURE, COLLECTIBLE_TEXTURE, EXIT_TEXTURE};
+		PLAYER_TEXTURE, COLLECTIBLE_TEXTURE, EXIT_TEXTURE};
 	int					i;
 
 	i = 0;
@@ -43,11 +49,14 @@ static void	*get_tile_image(t_game *game, char c)
 	return (NULL);
 }
 
+/*
+ * Renders the entire game map.
+ */
 void	render_map(t_game *game)
 {
-	int x;
-	int y;
-	void *img;
+	void	*img;
+	int		x;
+	int		y;
 
 	y = 0;
 	while (y < game->map->height)

@@ -6,16 +6,16 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:18:51 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:58:39 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "game.h"
 #include "system.h"
 
-/**
- * Vérifie et compte les éléments de la carte.
+/*
+ * Checks and counts the elements in the map.
  */
 static bool	process_map_element(t_map *map, char c, int i, int j)
 {
@@ -34,7 +34,9 @@ static bool	process_map_element(t_map *map, char c, int i, int j)
 	return (true);
 }
 
-// Vérifier les caractères valides et compter les éléments
+/*
+ * Checks if the map contains the correct number of required elements.
+ */
 static bool	check_elements(t_map *map)
 {
 	int	i;
@@ -57,8 +59,8 @@ static bool	check_elements(t_map *map)
 	return (map->players == 1 && map->exits == 1 && map->collectibles > 0);
 }
 
-/**
- * Vérifie si une ligne est totalement composée de murs ('1').
+/*
+ * Checks if a line consists entirely of walls ('1').
  */
 static bool	is_full_wall_line(char *line, int width)
 {
@@ -74,8 +76,8 @@ static bool	is_full_wall_line(char *line, int width)
 	return (true);
 }
 
-/**
- * Vérifie si les bords de la carte sont fermés par des murs.
+/*
+ * Checks if the map is properly enclosed by walls.
  */
 static bool	is_map_closed(t_map *map)
 {
@@ -94,7 +96,9 @@ static bool	is_map_closed(t_map *map)
 	return (true);
 }
 
-// Fonction principale pour vérifier la validité de la carte
+/*
+ * Main function to verify the validity of the map.
+ */
 bool	check_map_validity(t_map *map)
 {
 	if (!is_map_closed(map))

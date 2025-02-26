@@ -6,14 +6,17 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:28:16 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:59:06 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
 #include "game.h"
 
+/*
+ * Checks if the tile the player is trying to move to has any effect.
+ */
 static bool	check_tile_effect(t_game *game, int new_x, int new_y)
 {
 	char	tile;
@@ -39,6 +42,9 @@ static bool	check_tile_effect(t_game *game, int new_x, int new_y)
 	return (true);
 }
 
+/*
+ * Moves the player to the new position.
+ */
 void	move_player(t_game *game, int dx, int dy)
 {
 	int	new_x;

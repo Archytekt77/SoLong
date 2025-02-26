@@ -6,15 +6,18 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/24 13:23:07 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:59:16 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
-#include "system.h"
 #include "game.h"
+#include "system.h"
 
+/*
+ * Handles keyboard input for player movement and game exit.
+ */
 int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == 65307)
@@ -30,7 +33,9 @@ int	handle_keypress(int keycode, t_game *game)
 	return (0);
 }
 
-
+/*
+ * This function closes the window and frees the game structure
+ */
 int	close_window(t_game *game)
 {
 	free_game(game);
@@ -38,6 +43,9 @@ int	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
+/*
+ * Initializes the game window using MiniLibX.
+ */
 bool	init_window(t_game *game)
 {
 	game->mlx = mlx_init();

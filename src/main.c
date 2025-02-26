@@ -6,11 +6,11 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:03:37 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:35:51 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:58:54 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "game.h"
 #include "system.h"
 

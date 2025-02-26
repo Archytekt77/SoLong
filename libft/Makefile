@@ -6,16 +6,16 @@
 #    By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/28 13:25:14 by lmaria            #+#    #+#              #
-#    Updated: 2025/01/16 16:21:53 by lmaria           ###   ########.fr        #
+#    Updated: 2025/02/26 13:51:36 by lmaria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY : all clean fclean re
 
-# Nom de l'exécutable
+
 NAME = libft.a
 
-# Répertoires
+
 OBJS_DIR = objs/
 SRCS_DIR = srcs/
 
@@ -26,11 +26,11 @@ NUMBERS_DIR = numbers/
 PRINTS_DIR = prints/
 STRINGS_DIR = strings/
 
-#Options de compilation
+
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-# Source Files
+
 LST_CHARACTERS 	= 		ft_isalnum.c 		ft_isalpha.c 			\
 						ft_isascii.c 		ft_isdigit.c 			\
 						ft_isprint.c		ft_tolower.c			\
@@ -66,7 +66,7 @@ LST_STRINGS		=		ft_split.c 			ft_strchr.c				\
 	
 
 
-# Fichiers objets
+
 SRCS	=	$(addprefix $(SRCS_DIR)$(CHARACTERS_DIR), $(LST_CHARACTERS))	\
 			$(addprefix $(SRCS_DIR)$(LISTS_DIR), $(LST_LISTS))				\
 			$(addprefix $(SRCS_DIR)$(MEMORIES_DIR), $(LST_MEMORIES))		\
@@ -75,7 +75,7 @@ SRCS	=	$(addprefix $(SRCS_DIR)$(CHARACTERS_DIR), $(LST_CHARACTERS))	\
 			$(addprefix $(SRCS_DIR)$(STRINGS_DIR), $(LST_STRINGS))
 OBJS	=	$(subst $(SRCS_DIR), $(OBJS_DIR), $(SRCS:.c=.o))
 
-# Règles
+
 all : $(NAME)
 
 $(NAME) : $(OBJS)

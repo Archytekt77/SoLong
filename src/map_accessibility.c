@@ -6,16 +6,16 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:39 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:21:43 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:58:35 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "game.h"
 #include "system.h"
 
-/**
- * Vérifie si la carte est jouable après le flood fill.
+/*
+ * Checks if the map is solvable after the flood fill.
  */
 static bool	is_map_solvable(char **map_copy, t_map *map)
 {
@@ -35,8 +35,8 @@ static bool	is_map_solvable(char **map_copy, t_map *map)
 	return (true);
 }
 
-/**
- * Remplit la carte en marquant les zones accessibles avec 'V'.
+/*
+ * Performs a flood fill to mark accessible areas.
  */
 static void	flood_fill(char **map, int x, int y)
 {
@@ -54,8 +54,8 @@ static void	flood_fill(char **map, int x, int y)
 	flood_fill(map, x, y - 1);
 }
 
-/**
- * Copie la carte et vérifie les erreurs d'allocation.
+/*
+ * Creates a copy of the map and checks for allocation errors.
  */
 static char	**copy_map(t_map *map)
 {
@@ -80,8 +80,8 @@ static char	**copy_map(t_map *map)
 	return (map_copy);
 }
 
-/**
- * Vérifie si la carte est accessible depuis la position du joueur.
+/*
+ * Checks if the map is accessible from the player's starting position.
  */
 bool	check_map_accessibility(t_map *map)
 {

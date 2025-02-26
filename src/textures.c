@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:49 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/19 02:48:56 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/02/26 13:38:36 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include "game.h"
 #include "system.h"
 
+/*
+ * This function loads the textures into the game structure
+ */
 bool	load_textures(t_game *game)
 {
 	int	i;

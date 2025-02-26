@@ -6,11 +6,11 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:43:02 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:58:31 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "game.h"
 #include "system.h"
 #include <errno.h>
@@ -23,6 +23,9 @@ static void	exit_with_parsing_error(char *msg, int use_errno)
 		ft_printf("Error: %s\n", msg);
 }
 
+/*
+ * Prints an error message and exits the game.
+ */
 void	exit_with_game_error(t_game *game, char *msg, int use_errno)
 {
 	exit_with_parsing_error(msg, use_errno);
@@ -31,6 +34,9 @@ void	exit_with_game_error(t_game *game, char *msg, int use_errno)
 	exit(EXIT_FAILURE);
 }
 
+/*
+ * Prints an error message and exits due to a map-related error.
+ */
 void	exit_with_map_error(t_map *map, char *msg, int use_errno)
 {
 	exit_with_parsing_error(msg, use_errno);

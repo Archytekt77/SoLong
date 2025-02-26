@@ -6,15 +6,15 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:00 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/24 13:14:01 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:33:14 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx-linux/mlx.h"
 #include "game.h"
 
-/**
- * Libère la mémoire allouée pour la carte.
+/*
+ * Frees the allocated memory for the map.
  */
 void	free_map(t_map *map)
 {
@@ -40,8 +40,8 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-/**
- * Libère une copie temporaire de la carte (utilisée pour flood fill).
+/*
+ * Frees a temporary copy of the map used for flood fill.
  */
 void	free_map_copy(char **map_copy, int height)
 {
@@ -58,8 +58,8 @@ void	free_map_copy(char **map_copy, int height)
 	free(map_copy);
 }
 
-/**
- * Libère la mémoire allouée pour les textures.
+/*
+ * Frees the textures allocated in the game.
  */
 static void	free_textures(t_game *game)
 {
@@ -79,8 +79,8 @@ static void	free_textures(t_game *game)
 	}
 }
 
-/**
- * Libère toutes les ressources du jeu proprement.
+/*
+ * Frees all allocated resources in the game.
  */
 void	free_game(t_game *game)
 {

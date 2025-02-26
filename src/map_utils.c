@@ -6,14 +6,16 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:58 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/21 18:19:17 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:58:50 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 #include "system.h"
 
-// Vérifie si toutes les lignes de la carte ont la même largeur
+/*
+ * Checks if all rows in the map have the same width.
+ */
 bool	is_map_width_valid(t_map *map)
 {
 	int	current_width;
