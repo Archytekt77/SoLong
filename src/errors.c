@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:58:31 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 02:04:30 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "game.h"
 #include "system.h"
-#include <errno.h>
 
+/*
+ * Prints an error message with or without errno.
+ */
 static void	exit_with_parsing_error(char *msg, int use_errno)
 {
 	if (use_errno)
 		ft_printf("Error: %s: %s\n", msg, strerror(errno));
 	else
 		ft_printf("Error: %s\n", msg);
+	errno = 0;
 }
 
 /*

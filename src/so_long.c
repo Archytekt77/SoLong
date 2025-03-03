@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:48:41 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:43:14 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 01:28:26 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
 #include "game.h"
 #include "system.h"
 
@@ -21,12 +20,11 @@ static t_game	*init_game_structure(t_map *map)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game));
+	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		exit_with_game_error(NULL,
-			"Failed to allocate memory for game structure", 0);
+			"Failed to allocate memory for game structure", 1);
 	game->map = map;
-	game->moves = 0;
 	return (game);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:53:36 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:04:58 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 02:02:59 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SYSTEM_H
 
 # include "game.h"
+# include <errno.h>
 
 void	free_game(t_game *game);
 void	free_map(t_map *map);

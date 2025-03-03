@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:07:11 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:59:06 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 02:02:28 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../minilibx-linux/mlx.h"
 #include "game.h"
+#include "system.h"
 
 /*
  * Checks if the tile the player is trying to move to has any effect.
@@ -21,6 +20,9 @@ static bool	check_tile_effect(t_game *game, int new_x, int new_y)
 {
 	char	tile;
 
+	if (!game || !game->map || !game->map->map)
+		exit_with_game_error(game, "Invalid game state in check_tile_effect.",
+			0);
 	tile = game->map->map[new_y][new_x];
 	if (tile == '1')
 		return (false);
@@ -50,6 +52,8 @@ void	move_player(t_game *game, int dx, int dy)
 	int	new_x;
 	int	new_y;
 
+	if (!game || !game->map || !game->map->map || !game->mlx || !game->win)
+		exit_with_game_error(game, "Invalid game state in move_player.", 0);
 	new_x = game->map->player_x + dx;
 	new_y = game->map->player_y + dy;
 	if (!check_tile_effect(game, new_x, new_y))

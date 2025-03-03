@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:04:52 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:58:39 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 01:15:54 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "game.h"
 #include "system.h"
 
@@ -37,7 +36,7 @@ static bool	process_map_element(t_map *map, char c, int i, int j)
 /*
  * Checks if the map contains the correct number of required elements.
  */
-static bool	check_elements(t_map *map)
+static void	check_elements(t_map *map)
 {
 	int	i;
 	int	j;
@@ -49,14 +48,21 @@ static bool	check_elements(t_map *map)
 		while (j < map->width)
 		{
 			if (!process_map_element(map, map->map[i][j], i, j))
-				return (false);
+				exit_with_map_error(map, "The map contains invalid characters.",
+					0);
 			j++;
 		}
 		i++;
 	}
-	ft_printf("Total Players: %d, Exits: %d, Collectibles: %d\n", map->players,
-		map->exits, map->collectibles);
-	return (map->players == 1 && map->exits == 1 && map->collectibles > 0);
+	if (map->players != 1)
+		exit_with_map_error(map, "The map must have exactly one player ('P').",
+			0);
+	if (map->exits != 1)
+		exit_with_map_error(map, "The map must have exactly one exit ('E').",
+			0);
+	if (map->collectibles == 0)
+		exit_with_map_error(map,
+			"The map must have at least one collectible ('C').", 0);
 }
 
 /*
@@ -79,31 +85,29 @@ static bool	is_full_wall_line(char *line, int width)
 /*
  * Checks if the map is properly enclosed by walls.
  */
-static bool	is_map_closed(t_map *map)
+static void	is_map_closed(t_map *map)
 {
 	int	i;
 
 	if (!is_full_wall_line(map->map[0], map->width)
 		|| !is_full_wall_line(map->map[map->height - 1], map->width))
-		return (false);
+		exit_with_map_error(map,
+			"Map's top & bottom sides must be enclosed by walls ('1').", 0);
 	i = 0;
 	while (i < map->height)
 	{
 		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
-			return (false);
+			exit_with_map_error(map,
+				"Map's left & right sides must be enclosed by walls ('1').", 0);
 		i++;
 	}
-	return (true);
 }
 
 /*
  * Main function to verify the validity of the map.
  */
-bool	check_map_validity(t_map *map)
+void	check_map_validity(t_map *map)
 {
-	if (!is_map_closed(map))
-		exit_with_map_error(map, "The map is not closed by walls.", 0);
-	if (!check_elements(map))
-		exit_with_map_error(map, "Invalid elements in the map.", 0);
-	return (true);
+	is_map_closed(map);
+	check_elements(map);
 }

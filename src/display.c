@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:58:27 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 02:12:25 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../minilibx-linux/mlx.h"
 #include "game.h"
+#include "system.h"
 
 /*
  * Renders the player on the window.
@@ -21,9 +20,11 @@ void	render_player(t_game *game)
 {
 	void	*img;
 
+	if (!game || !game->mlx || !game->win)
+		exit_with_game_error(game, "Unable to render player.", 0);
 	img = game->textures[PLAYER_TEXTURE];
 	if (!img)
-		return ;
+		exit_with_game_error(game, "Missing player texture.", 0);
 	mlx_put_image_to_window(game->mlx, game->win, img, game->map->player_x
 		* TILE_SIZE, game->map->player_y * TILE_SIZE);
 }
@@ -38,6 +39,8 @@ static void	*get_tile_image(t_game *game, char c)
 		PLAYER_TEXTURE, COLLECTIBLE_TEXTURE, EXIT_TEXTURE};
 	int					i;
 
+	if (!game)
+		exit_with_game_error(game, "Unable to retrieve texture.", 0);
 	i = 0;
 	while (i < TEXTURES_TAB)
 	{
@@ -58,6 +61,8 @@ void	render_map(t_game *game)
 	int		x;
 	int		y;
 
+	if (!game || !game->mlx || !game->win || !game->map || !game->map->map)
+		exit_with_game_error(game, "Unable to render map.", 0);
 	y = 0;
 	while (y < game->map->height)
 	{

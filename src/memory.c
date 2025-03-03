@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:00 by lmaria            #+#    #+#             */
-/*   Updated: 2025/02/26 13:33:14 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 02:13:53 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
 #include "game.h"
 
 /*
@@ -52,10 +51,15 @@ void	free_map_copy(char **map_copy, int height)
 	i = 0;
 	while (i < height)
 	{
-		free(map_copy[i]);
+		if (map_copy[i])
+		{
+			free(map_copy[i]);
+			map_copy[i] = NULL;
+		}
 		i++;
 	}
 	free(map_copy);
+	map_copy = NULL;
 }
 
 /*
@@ -86,16 +90,20 @@ void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
-	if (game->textures)
-		free_textures(game);
+	free_textures(game);
 	if (game->win)
+	{
 		mlx_destroy_window(game->mlx, game->win);
+		game->win = NULL;
+	}
 	if (game->map)
 		free_map(game->map);
 	if (game->mlx)
 	{
+		mlx_loop_end(game->mlx);
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
+		game->mlx = NULL;
 	}
 	free(game);
 }

@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:33:13 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/26 13:59:16 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 01:37:40 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../minilibx-linux/mlx.h"
 #include "game.h"
 #include "system.h"
 
@@ -20,15 +18,15 @@
  */
 int	handle_keypress(int keycode, t_game *game)
 {
-	if (keycode == 65307)
+	if (keycode == KEY_ESC)
 		close_window(game);
-	else if (keycode == 'w' || keycode == 65362)
+	else if (keycode == KEY_W || keycode == KEY_UP)
 		move_player(game, 0, -1);
-	else if (keycode == 's' || keycode == 65364)
+	else if (keycode == KEY_S || keycode == KEY_DOWN)
 		move_player(game, 0, 1);
-	else if (keycode == 'a' || keycode == 65361)
+	else if (keycode == KEY_A || keycode == KEY_LEFT)
 		move_player(game, -1, 0);
-	else if (keycode == 'd' || keycode == 65363)
+	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 		move_player(game, 1, 0);
 	return (0);
 }
@@ -46,18 +44,17 @@ int	close_window(t_game *game)
 /*
  * Initializes the game window using MiniLibX.
  */
-bool	init_window(t_game *game)
+void	init_window(t_game *game)
 {
+	if (!game || !game->map)
+		exit_with_game_error(game, "Game structure isn't initialized.", 0);
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		exit_with_game_error(game, "Failed to initialize mlx", 0);
-	if (game->map->width <= 0 || game->map->height <= 0)
-		exit_with_game_error(game, "Invalid map dimensions", 0);
+		exit_with_game_error(game, "Failed to initialize mlx", 1);
+	load_textures(game);
 	game->win = mlx_new_window(game->mlx, game->map->width * TILE_SIZE,
 			game->map->height * TILE_SIZE, "so_long");
 	if (!game->win)
-		exit_with_game_error(game, "Failed to create window", 0);
-	load_textures(game);
+		exit_with_game_error(game, "Failed to create window", 1);
 	render_map(game);
-	return (true);
 }

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 01:32:49 by archytekt         #+#    #+#             */
-/*   Updated: 2025/02/26 13:38:36 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/03/03 02:00:29 by archytekt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
 #include "game.h"
 #include "system.h"
 
