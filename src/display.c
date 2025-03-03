@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:12:46 by lmaria            #+#    #+#             */
-/*   Updated: 2025/03/03 02:12:25 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/03/03 17:04:36 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	*get_tile_image(t_game *game, char c)
 			return (game->textures[textures[i]]);
 		i++;
 	}
-	ft_printf("Warning: Unknown tile '%c' found in map\n", c);
+	ft_printf("Error\n Unknown tile '%c' found in map.\n", c);
 	return (NULL);
 }
 

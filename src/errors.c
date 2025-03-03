@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:52:31 by lmaria            #+#    #+#             */
-/*   Updated: 2025/03/03 02:04:30 by archytekt        ###   ########.fr       */
+/*   Updated: 2025/03/03 17:06:46 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 static void	exit_with_parsing_error(char *msg, int use_errno)
 {
 	if (use_errno)
-		ft_printf("Error: %s: %s\n", msg, strerror(errno));
+		ft_printf("Error\n%s: %s\n", msg, strerror(errno));
 	else
-		ft_printf("Error: %s\n", msg);
+		ft_printf("Error\n%s\n", msg);
 	errno = 0;
 }
 

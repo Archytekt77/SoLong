@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: archytekt <archytekt@student.42.fr>        +#+  +:+       +#+         #
+#    By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:20:43 by lmaria            #+#    #+#              #
-#    Updated: 2025/03/02 21:23:19 by archytekt        ###   ########.fr        #
+#    Updated: 2025/03/03 17:05:19 by lmaria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 #Compilation flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -no-pie
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
 LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 LIBFT_INC = -I$(LIBFT_DIR)
